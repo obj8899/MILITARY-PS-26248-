@@ -12,6 +12,12 @@ The current build focuses on SILENT RIDGE as the active scenario. The app is int
 
 See the full project brief in [docs/PROJECT_DESCRIPTION.md](docs/PROJECT_DESCRIPTION.md).
 
+## New: 3D battleground
+
+Click **Enter 3D battleground** on the landing page to stand inside the SILENT RIDGE terrain: a third-person / free / top command camera, compass strip, minimap, link-bar squad panel, comms feed, report inventory, ping markers, a shrinking interference zone for the Instructor, and a scrubbable before/after review. Truth stays hidden from trainee stations until review. Offline, synthetic, hash-chained audit log, strict CSP in the production build.
+
+Full details, controls and the security posture: [docs/BATTLEGROUND_3D.md](docs/BATTLEGROUND_3D.md).
+
 ## Screenshots
 
 <table>

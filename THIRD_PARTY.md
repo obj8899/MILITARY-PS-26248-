@@ -12,6 +12,7 @@
 | milsymbol | 2.5.0 | BSD-3-Clause |
 | Framer Motion | 11.11.17 | MIT |
 | Howler.js | 2.2.4 | MIT |
+| three.js | 0.169.0 | MIT |
 | Vitest | 2.1.4 | MIT |
 | Playwright | 1.48.2 | Apache-2.0 |
 
