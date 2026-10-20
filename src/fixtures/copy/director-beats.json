@@ -1,0 +1,26 @@
+[
+  {
+    "id": "opening",
+    "time": "H+0",
+    "atMinute": 0,
+    "title": "Opening reports",
+    "description": "Read the initial UAS and platoon reports.",
+    "card": ""
+  },
+  {
+    "id": "jam-net",
+    "time": "Suggested at H+5",
+    "atMinute": 5,
+    "title": "Jam Net · T2 to T1",
+    "description": "T2 reports may be late, missing, partial, or garbled.",
+    "card": "JAM_NET"
+  },
+  {
+    "id": "spoof",
+    "time": "Suggested at H+8",
+    "atMinute": 8,
+    "title": "Spoof Contact",
+    "description": "A contradictory report is added to the selected seat's stream.",
+    "card": "SPOOF"
+  }
+]

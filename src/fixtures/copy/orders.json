@@ -1,0 +1,16 @@
+{
+  "keyQuestions": [
+    "What do I know?",
+    "What am I unsure of?",
+    "Who can I trust?"
+  ],
+  "taskOrganization": [
+    { "role": "Coy HQ", "callsign": "TIGER 1" },
+    { "role": "Pl 1", "callsign": "HAWK 2" },
+    { "role": "Pl 2", "callsign": "HAWK 3" },
+    { "role": "UAS", "callsign": "EAGLE 5" },
+    { "role": "Reserve", "callsign": "TIGER RES" }
+  ],
+  "briefLocationLabels": ["FORD", "N BRIDGE", "RIDGE", "FUP ORCHID"],
+  "sampleReport": "HAWK 2 SITREP: activity observed near FORD."
+}

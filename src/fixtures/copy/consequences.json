@@ -1,0 +1,7 @@
+{
+  "dp1": {
+    "commit-north": "The reserve moves north while the FORD picture remains uncertain.",
+    "hold-ford": "The reserve holds at the FORD as the scripted probe develops.",
+    "retask-uas": "The UAS checks the FORD; the scripted update reports the bridge clear."
+  }
+}

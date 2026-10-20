@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Communication effects",
+    "body": "Delay, loss, partial fields, and garble change what reaches a seat. The profile preview is illustrative; the current player still uses scripted delivery rules.",
+    "station": "Instructor",
+    "demo": "delay"
+  },
+  {
+    "title": "Source grades",
+    "body": "A source grade describes the report source, not whether the report is correct. Compare it with other evidence before acting.",
+    "station": "T1 console",
+    "demo": "grade"
+  },
+  {
+    "title": "Truth and perception",
+    "body": "Trainees see their own reports. The instructor and AAR can compare that picture with the separate scripted truth stream.",
+    "station": "T1 console",
+    "demo": "streams"
+  },
+  {
+    "title": "Deadlines and defaults",
+    "body": "A decision point can name a default for a missed deadline. This local preview shows the stated default but does not run a live deadline clock.",
+    "station": "Decision window",
+    "demo": "deadline"
+  },
+  {
+    "title": "The after-action review",
+    "body": "Review the reports available at the decision point, then compare them with scripted truth and discuss what could have changed the picture.",
+    "station": "After-action review",
+    "demo": "aar"
+  }
+]

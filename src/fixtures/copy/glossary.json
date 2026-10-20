@@ -1,0 +1,14 @@
+{
+  "SITREP": "A situation report: a short update about what a unit observes and is doing.",
+  "CONTACT": "A report that an unfamiliar or opposing element has been observed.",
+  "FUP": "Forming-up point: a named place used to organize before movement.",
+  "FLASH": "Highest message precedence in this exercise; intended for immediate attention.",
+  "IMMEDIATE": "Urgent message precedence in this exercise.",
+  "ROUTINE": "Normal message precedence in this exercise.",
+  "source grade": "A letter indicating the report source's assessed reliability in the scenario.",
+  "credibility": "A scripted indicator describing confidence in the report source.",
+  "white cell": "The instructor role that observes and directs the exercise.",
+  "net": "A shared radio channel represented by the local message feed.",
+  "DTG": "Date-time group: a compact way to label a message's time.",
+  "EMCON": "Emissions control: a scenario setting for limiting transmissions."
+}

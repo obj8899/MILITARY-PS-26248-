@@ -1,0 +1,30 @@
+{
+  "Instructor": {
+    "role": "You are directing a scripted exercise for the command seats.",
+    "goal": "Introduce communication friction and observe how each seat responds.",
+    "rightNow": "The map shows the exercise picture. Trainees see only their own reports.",
+    "nextStep": "Start the exercise, then play Jam Net and Spoof Contact when ready.",
+    "why": "The exercise makes uncertainty visible so a team can discuss how it decides with incomplete information."
+  },
+  "T1": {
+    "role": "You are T1, the company commander. You hold the reserve.",
+    "goal": "Decide where to commit the reserve without a complete picture.",
+    "rightNow": "Reports may arrive late, incomplete, or in conflict.",
+    "nextStep": "Review the reports, choose a decision option, and explain your rationale.",
+    "why": "The exercise is about making and explaining decisions while information is uncertain."
+  },
+  "T2": {
+    "role": "You are T2, a platoon commander reporting observations to T1.",
+    "goal": "Share clear, timely observations through the available link.",
+    "rightNow": "This seat should act on its own report stream.",
+    "nextStep": "Review your reports and prepare a concise SITREP for the team.",
+    "why": "The team depends on observations moving between seats despite communication friction."
+  },
+  "T3": {
+    "role": "You are T3, a platoon commander reporting observations to T1.",
+    "goal": "Share clear, timely observations through the available link.",
+    "rightNow": "This seat should act on its own report stream.",
+    "nextStep": "Review your reports and prepare a concise SITREP for the team.",
+    "why": "The team depends on observations moving between seats despite communication friction."
+  }
+}

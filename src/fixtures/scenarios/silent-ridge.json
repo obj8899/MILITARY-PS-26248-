@@ -1,0 +1,258 @@
+{
+  "id": "silent-ridge",
+  "title": "Exercise SILENT RIDGE",
+  "synthetic": true,
+  "summary": "A commander evaluates delayed, partial and contradictory reports around the FORD.",
+  "map": {
+    "center": [78.008, 22.512],
+    "zoom": 12.4,
+    "bounds": [[77.97, 22.48], [78.05, 22.545]],
+    "namedPlaces": [
+      { "id": "ford", "label": "FORD", "coordinates": [78.008, 22.514], "kind": "ford" },
+      { "id": "north-bridge", "label": "N BRIDGE", "coordinates": [78.018, 22.532], "kind": "bridge" },
+      { "id": "silent-ridge", "label": "SILENT RIDGE", "coordinates": [77.994, 22.528], "kind": "ridge" },
+      { "id": "fup", "label": "FUP ORCHID", "coordinates": [77.986, 22.496], "kind": "fup" },
+      { "id": "coy-hq", "label": "TIGER 1", "coordinates": [77.991, 22.507], "kind": "headquarters" },
+      { "id": "pl-1", "label": "HAWK 2", "coordinates": [78.001, 22.505], "kind": "position" },
+      { "id": "pl-2", "label": "HAWK 3", "coordinates": [77.982, 22.515], "kind": "position" }
+    ]
+  },
+  "seats": ["Instructor", "T1", "T2", "T3", "T5", "T6", "Adjacent"],
+  "links": [
+    { "id": "uas-t1", "from": "T5", "to": "T1", "defaultProfile": "clear" },
+    { "id": "t2-t1", "from": "T2", "to": "T1", "defaultProfile": "clear" },
+    { "id": "t3-t1", "from": "T3", "to": "T1", "defaultProfile": "clear" },
+    { "id": "t1-t2", "from": "T1", "to": "T2", "defaultProfile": "clear" },
+    { "id": "t1-t3", "from": "T1", "to": "T3", "defaultProfile": "clear" },
+    { "id": "adjacent-t1", "from": "Adjacent", "to": "T1", "defaultProfile": "clear" }
+  ],
+  "profiles": [
+    { "id": "clear", "label": "Clear", "delayMin": [0, 0], "lossPct": 0, "partialPct": 0, "garblePct": 0 },
+    { "id": "contested", "label": "Contested", "delayMin": [2, 4], "lossPct": 25, "partialPct": 30, "garblePct": 30 },
+    { "id": "heavilyJammed", "label": "Heavily Jammed", "delayMin": [4, 8], "lossPct": 60, "partialPct": 60, "garblePct": 70 },
+    { "id": "deceptive", "label": "Deceptive", "delayMin": [3, 6], "lossPct": 20, "partialPct": 40, "garblePct": 45 }
+  ],
+  "truthTimeline": [
+    {
+      "id": "truth-a1",
+      "simOffset": 0,
+      "facts": ["Four hostile vehicles are moving at the FORD.", "No hostile formation is present at N BRIDGE."],
+      "entities": [
+        { "id": "enemy-ford", "label": "Hostile vehicle element", "affiliation": "hostile", "coordinates": [78.008, 22.514], "symbolCode": "SFGPUCA---*****", "status": "moving" }
+      ]
+    },
+    {
+      "id": "truth-a7",
+      "simOffset": 17,
+      "facts": ["UAS reconfirms the FORD position. N BRIDGE remains clear."],
+      "entities": [
+        { "id": "enemy-ford", "label": "Hostile vehicle element", "affiliation": "hostile", "coordinates": [78.009, 22.515], "symbolCode": "SFGPUCA---*****", "status": "confirmed" }
+      ]
+    }
+  ],
+  "segments": [
+    {
+      "id": "opening",
+      "startsOn": { "type": "sessionStart" },
+      "items": [
+        {
+          "id": "uas-ford-initial",
+          "kind": "report",
+          "from": "T5",
+          "to": ["T1"],
+          "simOffset": 0,
+          "precedence": "IMMEDIATE",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "UAS CONTACT: 4 x vehicles moving at FORD.",
+          "fields": { "strength": "4 vehicles", "location": "FORD", "activity": "moving" },
+          "location": [78.008, 22.514],
+          "truthRef": "truth-a1",
+          "delivery": { "T1": { "delayMin": 0, "drop": false, "partialFields": [], "garble": false } }
+        },
+        {
+          "id": "t2-contact-initial",
+          "kind": "report",
+          "from": "T2",
+          "to": ["T1"],
+          "simOffset": 1,
+          "precedence": "ROUTINE",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "HAWK 2 CONTACT: movement observed west of FORD.",
+          "fields": { "strength": "undetermined", "location": "west of FORD", "activity": "movement" },
+          "location": [78.004, 22.513],
+          "truthRef": "truth-a1",
+          "delivery": { "T1": { "delayMin": 0, "drop": false, "partialFields": [], "garble": false } }
+        }
+      ]
+    },
+    {
+      "id": "jam-net-results",
+      "startsOn": { "type": "command", "command": "FireInject", "card": "JAM_NET" },
+      "items": [
+        {
+          "id": "t2-late-contact",
+          "kind": "report",
+          "from": "T2",
+          "to": ["T1"],
+          "simOffset": 0,
+          "precedence": "IMMEDIATE",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "HAWK 2 SITREP: vehicles remain at FORD; movement south-east.",
+          "fields": { "strength": "4 vehicles", "location": "FORD", "activity": "moving south-east" },
+          "location": [78.008, 22.514],
+          "truthRef": "truth-a1",
+          "delivery": { "T1": { "delayMin": 4, "drop": false, "partialFields": [], "garble": false } }
+        },
+        {
+          "id": "t2-dropped-contact",
+          "kind": "report",
+          "from": "T2",
+          "to": ["T1"],
+          "simOffset": 1,
+          "precedence": "FLASH",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "HAWK 2 CONTACT: additional vehicles emerging south of FORD.",
+          "fields": { "strength": "2 vehicles", "location": "south of FORD", "activity": "emerging" },
+          "location": [78.007, 22.51],
+          "truthRef": "truth-a1",
+          "delivery": { "T1": { "delayMin": 0, "drop": true, "partialFields": [], "garble": false } }
+        },
+        {
+          "id": "t2-partial-contact",
+          "kind": "report",
+          "from": "T2",
+          "to": ["T1"],
+          "simOffset": 2,
+          "precedence": "IMMEDIATE",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "HAWK 2 SITREP: enemy strength uncertain near FORD.",
+          "fields": { "strength": "4 vehicles", "location": "FORD", "activity": "holding" },
+          "location": [78.008, 22.514],
+          "truthRef": "truth-a1",
+          "delivery": { "T1": { "delayMin": 1, "drop": false, "partialFields": ["strength"], "garble": true } }
+        }
+      ]
+    },
+    {
+      "id": "spoof-contact",
+      "startsOn": { "type": "command", "command": "FireInject", "card": "SPOOF" },
+      "items": [
+        {
+          "id": "adjacent-bridge-spoof",
+          "kind": "report",
+          "from": "Adjacent",
+          "to": ["T1"],
+          "simOffset": 0,
+          "precedence": "FLASH",
+          "sourceGrade": "C",
+          "credibility": 3,
+          "text": "ADJACENT REPORT: enemy armour forming at N BRIDGE.",
+          "fields": { "strength": "armour element", "location": "N BRIDGE", "activity": "forming" },
+          "location": [78.018, 22.532],
+          "fabricated": true,
+          "delivery": { "T1": { "delayMin": 0, "drop": false, "partialFields": [], "garble": false } }
+        }
+      ]
+    },
+    {
+      "id": "retask-uas-branch",
+      "startsOn": { "type": "branch", "decisionPointId": "dp-1", "optionId": "retask-uas" },
+      "items": [
+        {
+          "id": "uas-ford-confirmed",
+          "kind": "report",
+          "from": "T5",
+          "to": ["T1"],
+          "simOffset": 1,
+          "precedence": "FLASH",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "UAS CONFIRM: FORD occupied. N BRIDGE clear.",
+          "fields": { "strength": "4 vehicles", "location": "FORD", "activity": "confirmed" },
+          "location": [78.009, 22.515],
+          "truthRef": "truth-a7",
+          "delivery": { "T1": { "delayMin": 0, "drop": false, "partialFields": [], "garble": false } }
+        }
+      ]
+    },
+    {
+      "id": "commit-north-branch",
+      "startsOn": { "type": "branch", "decisionPointId": "dp-1", "optionId": "commit-north" },
+      "items": [
+        {
+          "id": "ford-crossing",
+          "kind": "report",
+          "from": "T2",
+          "to": ["T1"],
+          "simOffset": 5,
+          "precedence": "FLASH",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "HAWK 2 CONTACT: hostile element crossing FORD unopposed.",
+          "fields": { "strength": "4 vehicles", "location": "FORD", "activity": "crossing" },
+          "location": [78.01, 22.516],
+          "truthRef": "truth-a7",
+          "delivery": { "T1": { "delayMin": 0, "drop": false, "partialFields": [], "garble": false } }
+        }
+      ]
+    },
+    {
+      "id": "hold-branch",
+      "startsOn": { "type": "branch", "decisionPointId": "dp-1", "optionId": "hold-ford" },
+      "items": [
+        {
+          "id": "ford-probe",
+          "kind": "report",
+          "from": "T2",
+          "to": ["T1"],
+          "simOffset": 4,
+          "precedence": "IMMEDIATE",
+          "sourceGrade": "B",
+          "credibility": 2,
+          "text": "HAWK 2 SITREP: hostile element probing at FORD.",
+          "fields": { "strength": "4 vehicles", "location": "FORD", "activity": "probing" },
+          "location": [78.009, 22.515],
+          "truthRef": "truth-a7",
+          "delivery": { "T1": { "delayMin": 0, "drop": false, "partialFields": [], "garble": false } }
+        }
+      ]
+    }
+  ],
+  "decisionPoints": [
+    {
+      "id": "dp-1",
+      "seat": "T1",
+      "opensAt": 10,
+      "deadlineMin": 6,
+      "defaultOption": "hold-ford",
+      "options": [
+        { "id": "commit-north", "label": "Commit reserve north", "consequenceLabel": "FORD is left exposed" },
+        { "id": "hold-ford", "label": "Hold at FORD", "consequenceLabel": "Maintain position with uncertainty" },
+        { "id": "retask-uas", "label": "Re-task UAS first", "consequenceLabel": "Gain confirmation before committing" }
+      ]
+    }
+  ],
+  "branches": [
+    { "decisionPointId": "dp-1", "optionId": "commit-north", "segmentId": "commit-north-branch" },
+    { "decisionPointId": "dp-1", "optionId": "hold-ford", "segmentId": "hold-branch" },
+    { "decisionPointId": "dp-1", "optionId": "retask-uas", "segmentId": "retask-uas-branch" }
+  ],
+  "brief": {
+    "situation": "A hostile vehicle element is assessed in the SILENT RIDGE sector.",
+    "mission": "Deny hostile movement through the FORD while maintaining sub-unit coordination.",
+    "commanderIntent": "Preserve the force, verify critical reports, and prevent an unobserved crossing.",
+    "hHour": "181000Z OCT"
+  },
+  "aarNotes": [
+    { "reportId": "t2-late-contact", "category": "delayed", "explanation": "The report was held for four simulated minutes after Jam Net." },
+    { "reportId": "t2-dropped-contact", "category": "dropped", "explanation": "The FLASH contact report never reached T1." },
+    { "reportId": "t2-partial-contact", "category": "partial", "explanation": "The strength field was removed before delivery." },
+    { "reportId": "t2-partial-contact", "category": "garbled", "explanation": "The contested link corrupted report text." },
+    { "reportId": "adjacent-bridge-spoof", "category": "false", "explanation": "The N BRIDGE report was fabricated; truth data contained no hostile formation there." }
+  ]
+}
