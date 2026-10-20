@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { Suspense, lazy, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Atmosphere, type EffectsMode } from "./components/Atmosphere";
 import guidanceCopy from "./fixtures/copy/guidance.json";
@@ -26,7 +26,10 @@ import {
 } from "./player/simulation";
 import type { Scenario, ScenarioItem } from "./contracts";
 
-type Screen = "landing" | "guide" | "setup" | "brief" | "instructor" | "t1" | "t2" | "t3" | "aar" | "end" | "builder";
+// The 3D battleground (three.js) loads on demand so the 2D screens stay light.
+const Battleground = lazy(() => import("./battleground/Battleground"));
+
+type Screen = "battleground" | "landing" | "guide" | "setup" | "brief" | "instructor" | "t1" | "t2" | "t3" | "aar" | "end" | "builder";
 type Seat = "Instructor" | "T1" | "T2" | "T3";
 type UiLogEntry = {
   title: string;
@@ -105,6 +108,7 @@ const phaseSteps = [
 ];
 
 const rehearsalScreens: { label: string; target: Screen }[] = [
+  { label: "3D Battleground", target: "battleground" },
   { label: "Landing", target: "landing" },
   { label: "Field guide", target: "guide" },
   { label: "Setup", target: "setup" },
@@ -119,11 +123,12 @@ const rehearsalScreens: { label: string; target: Screen }[] = [
 ];
 
 const phaseIndexForScreen: Record<Screen, number> = {
-  landing: 0, guide: 0, brief: 0, setup: 1,
+  battleground: 2, landing: 0, guide: 0, brief: 0, setup: 1,
   instructor: 2, t2: 2, t3: 2, t1: 3, aar: 4, end: 4, builder: 0,
 };
 
 const screenSubtitles: Record<Screen, string> = {
+  battleground: "Enter the 3D battleground: the picture is built only from the reports that reach you.",
   landing: "Choose a scenario and station to begin.",
   guide: "Learn what each station asks you to do.",
   setup: "Set the communication conditions for this scripted run.",
@@ -557,9 +562,10 @@ function App() {
           <h1>When the signal<br /><em>isn't the whole story.</em></h1>
           <p className="lead">A decision exercise in delayed reports, uncertain sources, and the moment you choose to act.</p>
           <div className="landing-actions">
-            <button className="primary-button launch-button" onClick={() => setScreen("setup")}>
-              <span>Begin exercise</span><span aria-hidden="true">↗</span>
+            <button className="primary-button launch-button" onClick={() => setScreen("battleground")}>
+              <span>Enter 3D battleground</span><span aria-hidden="true">↗</span>
             </button>
+            <button className="secondary-button" onClick={() => setScreen("setup")}>Begin exercise · 2D</button>
             <button className="secondary-button judge-walkthrough-button" onClick={startJudgeWalkthrough}>Judge walkthrough · 90 seconds</button>
             <button className="guide-link" onClick={() => { setGuideStep(0); setScreen("guide"); }}>
               <span className="guide-icon" aria-hidden="true">?</span> Take the 2-minute field guide
@@ -1456,6 +1462,8 @@ function App() {
       </div>
     </div>
   );
+
+  if (screen === "battleground") return <Suspense fallback={<div className="bg-loading" style={{ position: "fixed", inset: 0, background: "#070d0b", color: "#bac7bb", display: "grid", placeItems: "center", fontFamily: "Bahnschrift, sans-serif", letterSpacing: "0.2em" }}>LOADING BATTLEGROUND…</div>}><Battleground onExit={() => setScreen("landing")} /></Suspense>;
 
   return (
     <div className={`app-shell${presenterMode ? " presenter-mode" : ""}`}>
