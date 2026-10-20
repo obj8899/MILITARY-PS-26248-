@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "theme:gen": "node scripts/gen-light-theme.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.3.1",

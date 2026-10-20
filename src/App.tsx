@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "./theme";
 import { Atmosphere, type EffectsMode } from "./components/Atmosphere";
 import guidanceCopy from "./fixtures/copy/guidance.json";
 import glossary from "./fixtures/copy/glossary.json";
@@ -205,6 +206,7 @@ function App() {
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [audioCaption, setAudioCaption] = useState("");
   const audioContext = useRef<AudioContext | null>(null);
+  const [theme, setTheme] = useTheme();
   const [helpOpen, setHelpOpen] = useState(false);
   const [presenterMode, setPresenterMode] = useState(false);
   const [legendOpen, setLegendOpen] = useState(false);
@@ -1493,6 +1495,7 @@ function App() {
         </nav>
         <div className="header-actions">
           <span className="seat-chip">{seat === "Instructor" ? "Instructor · White cell" : `${seat} · ${seat === "T1" ? "Coy Cdr" : "Pl Cdr"}`}</span>
+          <button className="header-icon" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} title="Light / dark theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>{theme === "dark" ? "☀" : "☾"}</button>
           <button className="header-icon" aria-label="Help" title="Help (?)" onClick={() => setHelpOpen((open) => !open)}>?</button>
           <button className={`header-icon${soundEnabled ? " active" : ""}`} aria-label={soundEnabled ? "Mute sound" : "Enable sound"} title="Sound cues" onClick={() => { const next = !soundEnabled; setSoundEnabled(next); if (next) playUiTick(true); }}>{soundEnabled ? "♫" : "♪"}</button>
           <div className="rehearsal-menu-wrap">

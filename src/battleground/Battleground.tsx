@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTheme } from "../theme";
 import { Engine, type CamMode, type Layers, type PingMark, type Quality, type Theme } from "./engine";
 import { Sfx } from "./audio";
 import { drawMinimap, fromMap } from "./minimap";
@@ -26,10 +27,7 @@ export default function Battleground({ onExit }: { onExit: () => void }) {
   const [rehearsal, setRehearsal] = useState(true);
   const [quality, setQuality] = useState<Quality>(() => (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "reduced" : "full"));
   const [sound, setSound] = useState(true);
-  const [theme, setTheme] = useState<Theme>(() => {
-    try { const v = localStorage.getItem("sudarshan-theme"); if (v === "light" || v === "dark") return v; } catch { /* storage unavailable */ }
-    return window.matchMedia?.("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  });
+  const [theme, setTheme] = useTheme();
   const [paused, setPaused] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [hud, setHud] = useState<SimState | null>(null);
@@ -149,9 +147,8 @@ export default function Battleground({ onExit }: { onExit: () => void }) {
   useEffect(() => { engineRef.current?.setOrbitIdle(phase === "lobby"); }, [phase]);
   useEffect(() => {
     engineRef.current?.setTheme(theme);
-    try { localStorage.setItem("sudarshan-theme", theme); } catch { /* per-viewer convenience only */ }
   }, [theme]);
-  const toggleTheme = useCallback(() => setTheme((t) => (t === "dark" ? "light" : "dark")), []);
+  const toggleTheme = useCallback(() => setTheme(S.current.theme === "dark" ? "light" : "dark"), [setTheme]);
 
   const addPing = useCallback((p: XZ) => {
     const mark: PingMark = { id: "p" + Date.now(), pos: p, t0: performance.now() / 1000, owner: S.current.viewer === "Instructor" ? "WHITE CELL" : S.current.viewer };

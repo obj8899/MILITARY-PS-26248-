@@ -37,7 +37,7 @@ Terrain is **procedural and illustrative**, not survey data. Unit sizes are exag
 
 ## Light and dark themes
 
-A theme toggle sits on the sign-in screen, in the top banner and in the Menu. **Dark** is a dusk scene (dim warm sun, cool fog, stronger glow); **Light** is a bright day scene with a light interface. Both use the same terrain and the same HUD tokens (`.bg-root[data-theme]` in `battleground.css`). The first visit follows the system colour scheme; the choice is remembered in `localStorage` as a per-viewer convenience only (the app still works if storage is blocked). The Ashoka Chakra is used as a decorative mark, not as the State Emblem. The 2D screens are still dark only.
+A theme toggle sits on the sign-in screen, in the top banner and in the Menu. **Dark** is a dusk scene (dim warm sun, cool fog, stronger glow); **Light** is a bright day scene with a light interface. Both use the same terrain and the same HUD tokens (`.bg-root[data-theme]` in `battleground.css`). The first visit follows the system colour scheme; the choice is remembered in `localStorage` as a per-viewer convenience only (the app still works if storage is blocked). The Ashoka Chakra is used as a decorative mark, not as the State Emblem. The 2D screens share the same toggle (header button) and the same stored choice. Their light theme is generated: `npm run theme:gen` reads `src/index.css`, inverts the lightness of every colour (shadows stay dark) and writes `src/index.light.css`, so re-run it after editing `index.css`.
 
 ## Roles and what each can see
 
