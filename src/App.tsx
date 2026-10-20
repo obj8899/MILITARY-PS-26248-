@@ -28,6 +28,7 @@ import {
 import type { Scenario, ScenarioItem } from "./contracts";
 
 // The 3D battleground (three.js) loads on demand so the 2D screens stay light.
+const chakraUrl = new URL("./assets/chakra.png", import.meta.url).href;
 const Battleground = lazy(() => import("./battleground/Battleground"));
 
 type Screen = "battleground" | "landing" | "guide" | "setup" | "brief" | "instructor" | "t1" | "t2" | "t3" | "aar" | "end" | "builder";
@@ -1472,7 +1473,7 @@ function App() {
       <Atmosphere mode={effectsMode} />
       <header className="topbar">
         <div className="brand-block">
-          <span className="brand-mark">S</span>
+          <img className="brand-mark brand-chakra" src={chakraUrl} alt="" aria-hidden="true" draggable={false} />
           <div>
             <strong>Sudarshan Command Deck</strong>
             <small>Illustrative simulation · scripted exercise</small>

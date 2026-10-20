@@ -394,7 +394,7 @@ export default function Battleground({ onExit }: { onExit: () => void }) {
 
       {phase !== "gate" && (
         <div className="class-banner">
-          <Chakra /><span className="tricolour" aria-hidden="true"><i /><i /><i /></span>
+          <Chakra />
           <b>TRAINING · SYNTHETIC DATA · NOT FOR OPERATIONAL USE</b>
           <span>Illustrative simulation · scripted exercise</span>
           <span className="sess">{operator} · {sessionId} · 🔒 offline<ThemeToggle theme={theme} onToggle={toggleTheme} /></span>

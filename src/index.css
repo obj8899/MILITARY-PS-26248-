@@ -1805,3 +1805,7 @@ li {
   .phase-rail { width: 100%; justify-content: flex-start; overflow-x: auto; }
   .header-actions { width: 100%; justify-content: flex-start; }
 }
+
+/* Sudarshan Chakra logo (single brand mark) */
+.brand-mark.brand-chakra { background: none; border-radius: 50%; width: 38px; height: 38px; object-fit: contain; }
+:root[data-theme="dark"] .brand-mark.brand-chakra { filter: brightness(1.7) saturate(1.1); }

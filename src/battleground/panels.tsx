@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AuditEntry } from "./security";
 import { BRIEF, DP, DP_CLOSES, labelOf, type OptionId, type SimState, type Viewer, type Moment, type ViewReport } from "./sim";
 
-const chakraUrl = new URL("./chakra.png", import.meta.url).href;
+const chakraUrl = new URL("../assets/chakra.png", import.meta.url).href;
 /** Ashoka Chakra used as a decorative mark (not the State Emblem). */
 export function Chakra({ big }: { big?: boolean }) { return <img className={"chakra" + (big ? " big" : "")} src={chakraUrl} alt="" aria-hidden="true" draggable={false} />; }
 
@@ -44,7 +44,7 @@ export function Gate({ onEnter }: { onEnter: (v: { operator: string; role: Viewe
   return (
     <div className="bg-gate">
       <div className="gate-card">
-        <div className="brand-row"><Chakra big /><div className="tricolour" aria-hidden="true"><i /><i /><i /></div></div>
+        <div className="brand-row"><Chakra big /></div>
         <p className="gate-kicker">SECURE TRAINING SESSION</p>
         <h1>Sudarshan Command Deck</h1>
         <p className="gate-deva" lang="hi">सुदर्शन कमांड डेक · प्रशिक्षण अभ्यास</p>
@@ -106,7 +106,7 @@ export function Lobby(props: {
   return (
     <div className="bg-lobby">
       <div className="lobby-left">
-        <div className="brand-row"><Chakra big /><div className="tricolour" aria-hidden="true"><i /><i /><i /></div></div>
+        <div className="brand-row"><Chakra big /></div>
         <p className="gate-kicker">EXERCISE · SYNTHETIC · SCRIPTED</p>
         <h1>SILENT RIDGE</h1>
         <p className="gate-deva" lang="hi">साइलेंट रिज · मौन शिखर</p>
